@@ -1,6 +1,6 @@
 package win.pipi.api.data;
 
-public class HotTopicInfo {
+public class HotTopicInfo implements TopicInfoInterface{
 
     /**
      * title : sample string 1

@@ -1,6 +1,6 @@
 package win.pipi.api.data;
 
-public class TopicInfo {
+public class TopicInfo implements TopicInfoInterface {
 
     /**
      * title : 欢迎来到 CC98
