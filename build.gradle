@@ -21,6 +21,8 @@ task sourcesJar(type: Jar, dependsOn: classes) {
     from sourceSets.main.allSource
 }
 dependencies {
+
+    compile "org.projectlombok:lombok:1.16.18"
     compile 'io.reactivex:rxjava:1.1.1'
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'

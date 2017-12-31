@@ -9,11 +9,13 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class CC98APIManager {
 
-    public static final String AUTH_PARA_HEADER="Authorization";
+    public static final String AUTH_PARA_HEADER = "authorization";
     public static final String MAGIC1="Bearer ";
+    public static final int DEFAULT_TIMEOUT = 20;
     private static String AccessToken="";
 
     public static String getAccessToken() {
@@ -45,7 +47,8 @@ public class CC98APIManager {
                                 .newBuilder()
                                 //.addHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
                                 //.addHeader("Accept-Encoding", "gzip, deflate")
-                                //.addHeader("Connection", "keep-alive")
+                                .addHeader("Connection", "keep-alive")
+                                .header("Cache-Control", "no-cache")
                                 //.addHeader("Accept", "*/*")
                                 //.addHeader("Cookie", "add cookies here")
                                 .addHeader(AUTH_PARA_HEADER, MAGIC1+AccessToken)
@@ -54,6 +57,9 @@ public class CC98APIManager {
                     }
 
                 })
+                .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+                .readTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
+                .writeTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS)
                 .build();
 
         return httpClient;

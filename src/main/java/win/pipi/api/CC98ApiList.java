@@ -11,22 +11,21 @@ import java.util.ArrayList;
 
 public class CC98ApiList {
     public static void main(String[] args) {
-
-
         CC98ApiList apiList = new CC98ApiList();
         apiList.request();
     }
 
     public void request() {
 
+        //basic usage for api under java.
 
         // 步骤5:创建 网络请求接口 的实例
         CC98APIInterface request = CC98APIManager.createApiClient();
 
         //对 发送请求 进行封装
-        Observable<ArrayList<HotTopicInfo>> call = request.getTopicHot();
+        Observable<ArrayList<TopicInfo>> call = request.getTopicNew(1, 20);
 
-        call.subscribe(new Subscriber<ArrayList<HotTopicInfo>>() {
+        call.subscribe(new Subscriber<ArrayList<TopicInfo>>() {
             @Override
             public void onCompleted() {
 
@@ -34,15 +33,16 @@ public class CC98ApiList {
 
             @Override
             public void onError(Throwable e) {
+                e.printStackTrace();
 
             }
 
             @Override
-            public void onNext(ArrayList<HotTopicInfo> hotTopicInfos) {
-                for (HotTopicInfo i : hotTopicInfos) {
+            public void onNext(ArrayList<TopicInfo> hotTopicInfos) {
+                for (TopicInfo i : hotTopicInfos) {
                     print(i.getTitle());
                 }
-                //System.exit(1);
+
 
             }
         });
