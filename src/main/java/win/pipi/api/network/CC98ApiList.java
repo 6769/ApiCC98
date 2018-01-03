@@ -1,11 +1,9 @@
-package win.pipi.api;
+package win.pipi.api.network;
 
 
 import rx.Observable;
 import rx.Subscriber;
 import win.pipi.api.data.*;
-import win.pipi.api.network.CC98APIInterface;
-import win.pipi.api.network.CC98APIManager;
 
 import java.util.ArrayList;
 

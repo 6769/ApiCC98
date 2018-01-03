@@ -16,7 +16,7 @@ import java.util.List;
 public class CC98ApiTest {
 
 
-    static CC98APIInterface request = CC98APIManager.createApiClient();
+    private static CC98APIInterface request = CC98APIManager.createApiClient();
 
     @Test
     public void testHotTopic() throws Exception {
@@ -38,6 +38,7 @@ public class CC98ApiTest {
     public void testNewTopic() throws Exception {
 
         CC98APIManager.setAccessToken(getAuthKeys());
+        request = CC98APIManager.createApiClient();
 
         Observable<ArrayList<TopicInfo>> call = request.getTopicNew(0, 20);
         usedCall(call);
@@ -88,6 +89,7 @@ public class CC98ApiTest {
             public void onError(Throwable e) {
                 //throw new Exception(e.toString());
                 e.printStackTrace();
+                System.out.println("Token Changes every hour");
             }
 
             @Override

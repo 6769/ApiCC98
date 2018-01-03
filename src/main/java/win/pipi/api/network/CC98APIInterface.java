@@ -57,8 +57,6 @@ public interface CC98APIInterface {
                                         @Body NewPostInfo newPostInfo
                                               );
 
-
-
     @GET("User/{id}")
     Observable<UserInfo>              getUserInfoViaId(@Path("id")Integer id);
 
@@ -80,7 +78,6 @@ public interface CC98APIInterface {
 
     @GET("Board/{id}")
     Observable<ArrayList<BoardInfo>> getBoardId(@Path("id")Integer id);
-
 
 
     @GET ("Message?userName={userName}&filter={filter}")
