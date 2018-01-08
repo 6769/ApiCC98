@@ -80,9 +80,6 @@ public interface CC98APIInterface {
     Observable<ArrayList<BoardInfo>> getBoardId(@Path("id")Integer id);
 
 
-    @GET ("Message?userName={userName}&filter={filter}")
-    Observable<ArrayList<MessageInfo>> getMessage(@Path("userName") String user,
-                                            @Path("filter") String filter);
 
     @GET ("Message/{id}")
     Observable<MessageInfo>           getMessage(@Path("id")Integer id);
@@ -95,4 +92,26 @@ public interface CC98APIInterface {
     Observable<String>                deleteMessage(@Path("id")Integer id);
 
 
+    @GET("topic/search")
+    Observable<ArrayList<TopicInfo>> searchTopicGlobal(@Query("keyword") String keywords,
+                                                       @Query("from") Integer from,
+                                                       @Query("size") Integer size);
+
+    @GET("topic/search/board/{boardId}")
+    Observable<ArrayList<TopicInfo>> searchTopicUnderBoard(@Path("boardId") Integer boardId,
+                                                           @Query("keyword") String keywords,
+                                                           @Query("from") Integer from,
+                                                           @Query("size") Integer size);
+
+    @GET("notification/reply")
+    Observable notifyReplyMe(@Query("from") Integer from,
+                             @Query("size") Integer size);
+
+    @GET("notification/at")
+    Observable notifyAtMe(@Query("from") Integer from,
+                          @Query("size") Integer size);
+
+    @GET("notification/system")
+    Observable notifyViaSystem(@Query("from") Integer from,
+                               @Query("size") Integer size);
 }

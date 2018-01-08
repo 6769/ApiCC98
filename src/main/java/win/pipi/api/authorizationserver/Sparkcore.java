@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import org.apache.commons.beanutils.BeanUtils;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -12,7 +11,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import spark.Redirect;
 
 import java.lang.reflect.Type;
-import java.util.HashMap;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -55,7 +56,7 @@ public class Sparkcore {
 
         port(AuthorizationInfo.getPort());
 
-        redirect.any("/", AuthorizationInfo.InitAuthorUrl, Redirect.Status.MOVED_PERMANENTLY);
+        redirect.any("/", AuthorizationInfo.INIT_AUTHOR_URL, Redirect.Status.MOVED_PERMANENTLY);
         get("/" + AuthorizationInfo.getLocal_node(), (request, response) -> {
             String code = request.queryParams("code");
             if (code.isEmpty()) {
@@ -76,6 +77,11 @@ public class Sparkcore {
             AuthorizationInfo.AccessTokenPayload accessToken = response1.body();
 
             AuthorizationInfo.setUserToken(accessToken);
+
+            byte[] tokenbytes = accessToken.getAccess_token().getBytes();
+            String path = "auth.test.keys";
+            Path fp = Paths.get("src", "test", "resources", path);
+            Files.write(fp, tokenbytes);
 
             response.status(200);
             return gsonHandler.toJson(accessToken);

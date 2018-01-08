@@ -9,9 +9,9 @@ public class AuthorizationInfo {
     private final static String local_node = "oauth";
     private final static String redirect_uri = String.format("http://localhost:%d/%s", port, local_node);
 
-    public static final String OPENIDURL = "https://openid.cc98.org/";
+    public static final String OPENID_URL = "https://openid.cc98.org/";
 
-    public static final String InitAuthorUrl = "https://openid.cc98.org/connect/authorize?" +
+    public static final String INIT_AUTHOR_URL = "https://openid.cc98.org/connect/authorize?" +
             "client_id=916b6d48-f419-4e1c-0aae-08d5511c3131&scope=cc98-api+openid&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A8090%2Foauth&state=1234";
 
 

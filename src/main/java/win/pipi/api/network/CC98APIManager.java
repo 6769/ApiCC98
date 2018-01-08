@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class CC98APIManager {
 
     public static final String AUTH_PARA_HEADER = "authorization";
-    public static final String MAGIC1="Bearer ";
+    public static String MAGIC1 = "Bearer ";
     public static final int DEFAULT_TIMEOUT = 20;
     private static String AccessToken="";
 

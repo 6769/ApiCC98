@@ -16,7 +16,12 @@ import java.util.List;
 public class CC98ApiTest {
 
 
-    private static CC98APIInterface request = CC98APIManager.createApiClient();
+    private static CC98APIInterface request;
+
+    static {
+        CC98APIManager.setAccessToken(getAuthKeys());
+        request = CC98APIManager.createApiClient();
+    }
 
     @Test
     public void testHotTopic() throws Exception {
@@ -28,6 +33,28 @@ public class CC98ApiTest {
     }
 
     @Test
+    public void testSearchGlob() throws Exception {
+        String key = "时间";
+        Observable<ArrayList<TopicInfo>> call = request.searchTopicGlobal(key, 0, 20);
+        usedCall(call);
+    }
+
+    @Test
+    public void testSearchSpecic() throws Exception {
+        String key = "时间";
+        Observable<ArrayList<TopicInfo>> call = request.searchTopicUnderBoard(100, key, 0, 20);
+        usedCall(call);
+    }
+
+    @Test
+    public void testEmptySearch() throws Exception {
+        String key = "时间000";
+        Observable<ArrayList<TopicInfo>> call = request.searchTopicUnderBoard(100, key, 0, 20);
+        usedCall(call);
+    }
+
+
+    @Test
     public void testBoardTopic() throws Exception {
 
         Observable<ArrayList<TopicInfo>> call = request.getTopicBoard(68, 0, 20);
@@ -36,9 +63,6 @@ public class CC98ApiTest {
 
     @Test
     public void testNewTopic() throws Exception {
-
-        CC98APIManager.setAccessToken(getAuthKeys());
-        request = CC98APIManager.createApiClient();
 
         Observable<ArrayList<TopicInfo>> call = request.getTopicNew(0, 20);
         usedCall(call);
@@ -68,14 +92,19 @@ public class CC98ApiTest {
             }
         });
 
-
     }
 
-    public String getAuthKeys() throws Exception {
+    public static String getAuthKeys() {
         String path = "auth.test.keys";
-        byte[] encoded = Files.readAllBytes(Paths.get("src", "test", "resources", path));
-        String keys = new String(encoded);
-        return keys;
+        try {
+            byte[] encoded = Files.readAllBytes(Paths.get("src", "test", "resources", path));
+            String keys = new String(encoded);
+            return keys;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+
     }
 
     public <T extends TopicInfoInterface> void usedCall(Observable<ArrayList<T>> acall) throws Exception {
@@ -94,6 +123,7 @@ public class CC98ApiTest {
 
             @Override
             public void onNext(ArrayList<T> TopicInfos) {
+                System.out.println(TopicInfos.size());
                 for (T i : TopicInfos) {
                     System.out.println(i.getTitle() + "_" + i.getAuthorName());
                 }
