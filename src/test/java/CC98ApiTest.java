@@ -1,6 +1,15 @@
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.junit.Test;
+import retrofit2.Call;
+import retrofit2.Response;
 import rx.Observable;
 import rx.Subscriber;
+import win.pipi.api.authorization.AuthorizationInfo;
+import win.pipi.api.authorization.LoginCC98;
+import win.pipi.api.authorization.OpenIDConnect;
+import win.pipi.api.authorization.beans.AccessTokenPayload;
+import win.pipi.api.authorization.beans.ErrorPayload;
 import win.pipi.api.data.GroupBoardInfo;
 import win.pipi.api.data.HotTopicInfo;
 import win.pipi.api.data.TopicInfo;
@@ -8,19 +17,51 @@ import win.pipi.api.data.TopicInfoInterface;
 import win.pipi.api.network.CC98APIInterface;
 import win.pipi.api.network.CC98APIManager;
 
+import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
 public class CC98ApiTest {
 
 
     private static CC98APIInterface request;
+    private static OpenIDConnect openIDConnect;
+    private static Type type;
+    private static LoginCC98 loginCC98;
 
     static {
-        CC98APIManager.setAccessToken(getAuthKeys());
-        request = CC98APIManager.createApiClient();
+        openIDConnect = OpenIDConnect.openIDConnectRequestBuilder();
+
+        loginCC98 = new LoginCC98();
+        request = new CC98APIManager(loginCC98).createApiClient();
+        type = new TypeToken<Map<String, String>>() {
+        }.getType();
+    }
+
+    @Test
+    public void testPassWordToken() throws Exception {
+        String username = "";
+        String password = "";
+
+
+        AuthorizationInfo.PostPasswordPayload payload = new AuthorizationInfo.PostPasswordPayload(username, password);
+        Gson gson = new Gson();
+        String json = gson.toJson(payload);
+        Map<String, String> postpayload = gson.fromJson(json, type);
+        Call<AccessTokenPayload> call = openIDConnect.postPasword(postpayload);
+        Response<AccessTokenPayload> tokenPayload = call.execute();
+        AccessTokenPayload realtokenPayload = tokenPayload.body();
+        if (tokenPayload.code() > 200) {
+            String err = tokenPayload.errorBody().string();
+            ErrorPayload errorPayload = gson.fromJson(err, ErrorPayload.class);
+            print(errorPayload.getError_description());
+            return;
+        }
+
+        String accesstoken = realtokenPayload.getAccess_token();
+        System.out.println(realtokenPayload);
     }
 
     @Test
@@ -29,6 +70,17 @@ public class CC98ApiTest {
 
         Observable<ArrayList<HotTopicInfo>> call = request.getTopicHot();
         usedCall(call);
+
+    }
+
+    @Test
+    public void testDupHotTopic() throws Exception {
+
+
+        Observable<ArrayList<HotTopicInfo>> call = request.getTopicHot();
+        Observable<ArrayList<HotTopicInfo>> call2 = request.getTopicHot();
+        usedCall(call);
+        usedCall(call2);
 
     }
 
@@ -132,5 +184,7 @@ public class CC98ApiTest {
         });
     }
 
-
+    void print(Object m) {
+        System.out.println(m);
+    }
 }

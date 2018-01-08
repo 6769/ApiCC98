@@ -28,9 +28,7 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 dependencies {
 
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    //compile "org.projectlombok:lombok:1.16.18"
-    
-    compile "com.sparkjava:spark-core:2.7.1"
+
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     compile 'io.reactivex:rxjava:1.1.1'
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
