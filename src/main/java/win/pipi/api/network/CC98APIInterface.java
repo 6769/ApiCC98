@@ -1,11 +1,13 @@
 package win.pipi.api.network;
 
+import retrofit2.Call;
 import retrofit2.http.*;
 import rx.Observable;
 import win.pipi.api.data.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public interface CC98APIInterface {
 
@@ -13,12 +15,6 @@ public interface CC98APIInterface {
 
     @GET("Topic/Hot")
     Observable<ArrayList<HotTopicInfo>> getTopicHot();
-    // 注解里传入 网络请求 的部分URL地址
-    // Retrofit把网络请求的URL分成了两部分：一部分放在Retrofit对象里，另一部分放在网络请求接口里
-    // 如果接口里的url是一个完整的网址，那么放在Retrofit对象里的URL可以忽略
-    // getTopicHot()是接受网络请求数据的方法
-
-
 
     //page split limit to 20 per list;
     //  eg:1-20,21-40;41-60;61-80;81-100;
@@ -36,11 +32,23 @@ public interface CC98APIInterface {
                                                    @Query("size") Integer size);
 
 
-    @GET("Post/Topic/{topicId}")
-    Observable<ArrayList<PostContent>> getPostTopic(@Path("topicId")Integer id,
+    @GET("Topic/{topicId}/Post")
+    Observable<ArrayList<PostContent>> getTopicPost(@Path("topicId")Integer id,
                                               @Query("from") Integer from,
-                                              @Query("to")Integer to
+                                              @Query("size")Integer size
                                               );
+    @GET("Topic/{topicId}/Post")
+    Call<ArrayList<PostContent>> getTopicPostCall(@Path("topicId")Integer id,
+                                                    @Query("from") Integer from,
+                                                    @Query("size")Integer size
+    );
+
+
+    @GET("Topic/{topicId}")
+    Observable<TopicInfo>               getTopicInfo(@Path("topicId")Integer id);
+
+    @GET("Topic/{topicId}")
+    Call<TopicInfo>               getTopicInfoCall(@Path("topicId")Integer id);
 
 
     //create new topic;
@@ -60,6 +68,9 @@ public interface CC98APIInterface {
     @GET("User/{id}")
     Observable<UserInfo>              getUserInfoViaId(@Path("id")Integer id);
 
+    @GET("user/basic/")
+    Call<ArrayList<BasicUserInfo>>      getBasicUserInfos(@QueryMap Map<String,Integer> idsmap);
+
     @GET("User/Name/{name}")
     Observable<UserInfo>              getUserInfoViaName(@Path("name")String name);
 
@@ -73,11 +84,9 @@ public interface CC98APIInterface {
     @GET("Board/Root")
     Observable<ArrayList<RootBoardInfo>> getBoardRoot();
 
-    @GET("Board/{boardId}/Sub")
-    Observable<ArrayList<BoardInfo>> getBoardSub(@Path("boardId") Integer id);
 
     @GET("Board/{id}")
-    Observable<ArrayList<BoardInfo>> getBoardId(@Path("id")Integer id);
+    Observable<BoardInfo> getBoardId(@Path("id")Integer id);
 
 
 
@@ -114,4 +123,6 @@ public interface CC98APIInterface {
     @GET("notification/system")
     Observable notifyViaSystem(@Query("from") Integer from,
                                @Query("size") Integer size);
+
+
 }

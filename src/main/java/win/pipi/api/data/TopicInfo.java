@@ -3,34 +3,6 @@ package win.pipi.api.data;
 public class TopicInfo implements TopicInfoInterface {
 
 
-    /**
-     * id : 4744646
-     * boardId : 68
-     * title : 【学习天地水楼1.0】
-     * time : 2017-12-22T23:21:27.843+08:00
-     * userId : 530704
-     * userName : 格林匹施
-     * isAnonymous : false
-     * disableHot : true
-     * lastPostTime : 2017-12-31T19:33:27
-     * state : 0
-     * type : 0
-     * replyCount : 65
-     * hitCount : 656
-     * totalVoteUserCount : 0
-     * lastPostUser : 格林匹施
-     * lastPostContent : 在家跨年
-     * topState : 0
-     * bestState : 0
-     * isVote : false
-     * isPosterOnly : false
-     * allowedViewerState : 0
-     * dislikeCount : 0
-     * likeCount : 0
-     * highlightInfo : null
-     * tag1 : 85
-     * tag2 : 0
-     */
 
     private int id;
     private int boardId;

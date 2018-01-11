@@ -6,11 +6,10 @@ public class GroupBoardInfo {
 
     /**
      * id : 763
-     * name : 置顶
+     * name :
      * order : 1
      * masters : []
-     * boards : [{"id":758,"name":"似水流年","boardMasters":["磊磊1010","CC98Durian"],"topicCount":1084,"postCount":161766,"todayCount":20},{"id":182,"name":"心灵之约","boardMasters":["6781287","朱小朱。","鸭子菌"],"topicCount":90578,"postCount":1948666,"todayCount":10}]
-     */
+     * boards : */
 
     private int id;
     private String name;

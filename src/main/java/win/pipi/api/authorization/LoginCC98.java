@@ -2,14 +2,23 @@ package win.pipi.api.authorization;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
+import rx.Observable;
+import rx.Subscriber;
 import win.pipi.api.authorization.beans.AccessTokenPayload;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.Date;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class LoginCC98 {
     private final static Type type;
@@ -19,13 +28,34 @@ public class LoginCC98 {
     static {
         type = new TypeToken<Map<String, String>>() {
         }.getType();
-        openIDConnect = OpenIDConnect.openIDConnectRequestBuilder();
+        openIDConnect = openIDConnectRequestBuilder();
+    }
+
+    public void setAccessTokenPayload(AccessTokenPayload accessTokenPayload) {
+        this.accessTokenPayload = accessTokenPayload;
     }
 
     private AccessTokenPayload accessTokenPayload;
     private long lastSuccessLogin = 0;
     private String username;
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     private String password;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 
     public LoginCC98(String username, String password) {
         this.username = username;
@@ -59,6 +89,14 @@ public class LoginCC98 {
             return accessTokenPayload.getAccess_token();
     }
 
+    public Observable<AccessTokenPayload> loginRx(){
+        AuthorizationInfo.PostPasswordPayload payload = new AuthorizationInfo.PostPasswordPayload(username, password);
+
+        String json = gson.toJson(payload);
+        Map<String, String> postpayload = gson.fromJson(json, type);
+        return openIDConnect.postPaswordRx(postpayload);
+    }
+
     public int login() {
         AuthorizationInfo.PostPasswordPayload payload = new AuthorizationInfo.PostPasswordPayload(username, password);
 
@@ -78,6 +116,25 @@ public class LoginCC98 {
             return Integer.MAX_VALUE;
         }
 
+    }
+
+    static OpenIDConnect openIDConnectRequestBuilder() {
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(interceptor)
+                .retryOnConnectionFailure(true)
+                .connectTimeout(8, TimeUnit.SECONDS)
+                //.addNetworkInterceptor(authorizationInterceptor)
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(OpenIDConnect.BASE_URL)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
+        return retrofit.create(OpenIDConnect.class);
     }
 
 }

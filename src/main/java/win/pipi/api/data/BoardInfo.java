@@ -4,45 +4,27 @@ import java.util.List;
 
 public class BoardInfo {
 
-    /**
-     * id : 98
-     * name : 测试板块
-     * description : 这个版面仅供内部测试使用。
-     * childBoardCount : 20
-     * parentId : 0
-     * rootId : 0
-     * totalPostCount : 989898
-     * totalTopicCount : 98
-     * todayPostCount : 9898
-     * isHidden : false
-     * isCategory : false
-     * isEncrypted : false
-     * isAnomynous : false
-     * isLocked : false
-     * masters : ["管理员1","管理员2"]
-     * lastPostInfo : {"boardId":100,"topicId":1009898,"postId":98989898,"dateTime":"1998-09-08T00:00:00","userName":"CC98","userId":9898,"topicTitle":"最后一个主题的标题"}
-     * postTimeLimit : 00:00:00
-     * needAudit : false
-     */
 
     private int id;
     private String name;
-    private String description;
-    private int childBoardCount;
+    private String bigPaper;
+    private String logoUri;
     private int parentId;
-    private int rootId;
-    private int totalPostCount;
-    private int totalTopicCount;
-    private int todayPostCount;
-    private boolean isHidden;
-    private boolean isCategory;
-    private boolean isEncrypted;
-    private boolean isAnomynous;
+    private int anonymousState;
+    private int privacyState;
+    private int viewerFilterState;
+    private int protectionLevel;
     private boolean isLocked;
-    private LastPostInfoBean lastPostInfo;
-    private String postTimeLimit;
-    private boolean needAudit;
-    private List<String> masters;
+    private int rootId;
+    private String description;
+    private int topicCount;
+    private int postCount;
+    private int todayCount;
+    private String lastPostContent;
+    private int allowPostOnly;
+    private boolean forbidRvpn;
+    private boolean canEntry;
+    private List<String> boardMasters;
 
     public int getId() {
         return id;
@@ -60,20 +42,20 @@ public class BoardInfo {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getBigPaper() {
+        return bigPaper;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setBigPaper(String bigPaper) {
+        this.bigPaper = bigPaper;
     }
 
-    public int getChildBoardCount() {
-        return childBoardCount;
+    public String getLogoUri() {
+        return logoUri;
     }
 
-    public void setChildBoardCount(int childBoardCount) {
-        this.childBoardCount = childBoardCount;
+    public void setLogoUri(String logoUri) {
+        this.logoUri = logoUri;
     }
 
     public int getParentId() {
@@ -84,68 +66,36 @@ public class BoardInfo {
         this.parentId = parentId;
     }
 
-    public int getRootId() {
-        return rootId;
+    public int getAnonymousState() {
+        return anonymousState;
     }
 
-    public void setRootId(int rootId) {
-        this.rootId = rootId;
+    public void setAnonymousState(int anonymousState) {
+        this.anonymousState = anonymousState;
     }
 
-    public int getTotalPostCount() {
-        return totalPostCount;
+    public int getPrivacyState() {
+        return privacyState;
     }
 
-    public void setTotalPostCount(int totalPostCount) {
-        this.totalPostCount = totalPostCount;
+    public void setPrivacyState(int privacyState) {
+        this.privacyState = privacyState;
     }
 
-    public int getTotalTopicCount() {
-        return totalTopicCount;
+    public int getViewerFilterState() {
+        return viewerFilterState;
     }
 
-    public void setTotalTopicCount(int totalTopicCount) {
-        this.totalTopicCount = totalTopicCount;
+    public void setViewerFilterState(int viewerFilterState) {
+        this.viewerFilterState = viewerFilterState;
     }
 
-    public int getTodayPostCount() {
-        return todayPostCount;
+    public int getProtectionLevel() {
+        return protectionLevel;
     }
 
-    public void setTodayPostCount(int todayPostCount) {
-        this.todayPostCount = todayPostCount;
-    }
-
-    public boolean isIsHidden() {
-        return isHidden;
-    }
-
-    public void setIsHidden(boolean isHidden) {
-        this.isHidden = isHidden;
-    }
-
-    public boolean isIsCategory() {
-        return isCategory;
-    }
-
-    public void setIsCategory(boolean isCategory) {
-        this.isCategory = isCategory;
-    }
-
-    public boolean isIsEncrypted() {
-        return isEncrypted;
-    }
-
-    public void setIsEncrypted(boolean isEncrypted) {
-        this.isEncrypted = isEncrypted;
-    }
-
-    public boolean isIsAnomynous() {
-        return isAnomynous;
-    }
-
-    public void setIsAnomynous(boolean isAnomynous) {
-        this.isAnomynous = isAnomynous;
+    public void setProtectionLevel(int protectionLevel) {
+        this.protectionLevel = protectionLevel;
     }
 
     public boolean isIsLocked() {
@@ -156,111 +106,83 @@ public class BoardInfo {
         this.isLocked = isLocked;
     }
 
-    public LastPostInfoBean getLastPostInfo() {
-        return lastPostInfo;
+    public int getRootId() {
+        return rootId;
     }
 
-    public void setLastPostInfo(LastPostInfoBean lastPostInfo) {
-        this.lastPostInfo = lastPostInfo;
+    public void setRootId(int rootId) {
+        this.rootId = rootId;
     }
 
-    public String getPostTimeLimit() {
-        return postTimeLimit;
+    public String getDescription() {
+        return description;
     }
 
-    public void setPostTimeLimit(String postTimeLimit) {
-        this.postTimeLimit = postTimeLimit;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public boolean isNeedAudit() {
-        return needAudit;
+    public int getTopicCount() {
+        return topicCount;
     }
 
-    public void setNeedAudit(boolean needAudit) {
-        this.needAudit = needAudit;
+    public void setTopicCount(int topicCount) {
+        this.topicCount = topicCount;
     }
 
-    public List<String> getMasters() {
-        return masters;
+    public int getPostCount() {
+        return postCount;
     }
 
-    public void setMasters(List<String> masters) {
-        this.masters = masters;
+    public void setPostCount(int postCount) {
+        this.postCount = postCount;
     }
 
-    public static class LastPostInfoBean {
-        /**
-         * boardId : 100
-         * topicId : 1009898
-         * postId : 98989898
-         * dateTime : 1998-09-08T00:00:00
-         * userName : CC98
-         * userId : 9898
-         * topicTitle : 最后一个主题的标题
-         */
+    public int getTodayCount() {
+        return todayCount;
+    }
 
-        private int boardId;
-        private int topicId;
-        private int postId;
-        private String dateTime;
-        private String userName;
-        private int userId;
-        private String topicTitle;
+    public void setTodayCount(int todayCount) {
+        this.todayCount = todayCount;
+    }
 
-        public int getBoardId() {
-            return boardId;
-        }
+    public String getLastPostContent() {
+        return lastPostContent;
+    }
 
-        public void setBoardId(int boardId) {
-            this.boardId = boardId;
-        }
+    public void setLastPostContent(String lastPostContent) {
+        this.lastPostContent = lastPostContent;
+    }
 
-        public int getTopicId() {
-            return topicId;
-        }
+    public int getAllowPostOnly() {
+        return allowPostOnly;
+    }
 
-        public void setTopicId(int topicId) {
-            this.topicId = topicId;
-        }
+    public void setAllowPostOnly(int allowPostOnly) {
+        this.allowPostOnly = allowPostOnly;
+    }
 
-        public int getPostId() {
-            return postId;
-        }
+    public boolean isForbidRvpn() {
+        return forbidRvpn;
+    }
 
-        public void setPostId(int postId) {
-            this.postId = postId;
-        }
+    public void setForbidRvpn(boolean forbidRvpn) {
+        this.forbidRvpn = forbidRvpn;
+    }
 
-        public String getDateTime() {
-            return dateTime;
-        }
+    public boolean isCanEntry() {
+        return canEntry;
+    }
 
-        public void setDateTime(String dateTime) {
-            this.dateTime = dateTime;
-        }
+    public void setCanEntry(boolean canEntry) {
+        this.canEntry = canEntry;
+    }
 
-        public String getUserName() {
-            return userName;
-        }
+    public List<String> getBoardMasters() {
+        return boardMasters;
+    }
 
-        public void setUserName(String userName) {
-            this.userName = userName;
-        }
-
-        public int getUserId() {
-            return userId;
-        }
-
-        public void setUserId(int userId) {
-            this.userId = userId;
-        }
-
-        public String getTopicTitle() {
-            return topicTitle;
-        }
-
-        public void setTopicTitle(String topicTitle) {
-            this.topicTitle = topicTitle;
-        }
+    public void setBoardMasters(List<String> boardMasters) {
+        this.boardMasters = boardMasters;
     }
 }

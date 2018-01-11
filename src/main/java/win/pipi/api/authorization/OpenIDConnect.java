@@ -9,6 +9,7 @@ import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
+import rx.Observable;
 import win.pipi.api.authorization.beans.AccessTokenPayload;
 
 import java.util.Map;
@@ -27,22 +28,10 @@ public interface OpenIDConnect {
     @FormUrlEncoded
     Call<AccessTokenPayload> postPasword(@FieldMap Map<String, String> payload);
 
+    @POST("connect/token")
+    @FormUrlEncoded
+    Observable<AccessTokenPayload> postPaswordRx(@FieldMap Map<String, String> payload);
 
-    static OpenIDConnect openIDConnectRequestBuilder() {
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(interceptor)
-                .retryOnConnectionFailure(true)
-                .connectTimeout(8, TimeUnit.SECONDS)
-                //.addNetworkInterceptor(authorizationInterceptor)
-                .build();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(OpenIDConnect.BASE_URL)
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        return retrofit.create(OpenIDConnect.class);
-    }
+
 }

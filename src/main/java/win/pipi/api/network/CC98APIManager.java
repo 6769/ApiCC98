@@ -11,14 +11,25 @@ import win.pipi.api.authorization.LoginCC98;
 import win.pipi.api.authorization.LoginException;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class CC98APIManager {
 
-    private static final String AUTH_PARA_HEADER = "authorization";
+    public static final String AUTH_PARA_HEADER = "authorization";
     private static final int DEFAULT_TIMEOUT = 10;
     private static final String MAGIC1 = "Bearer ";
     private String accessToken;
+
+    public LoginCC98 getLoginCC98() {
+        return loginCC98;
+    }
+
+    public void setLoginCC98(LoginCC98 loginCC98) {
+        this.loginCC98 = loginCC98;
+    }
+
     private LoginCC98 loginCC98;
 
     public CC98APIManager(LoginCC98 loginCC98) {
@@ -38,6 +49,11 @@ public class CC98APIManager {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
         return retrofit.create(CC98APIInterface.class);
+    }
+    public String getHttpHeaderToken(){
+
+        return MAGIC1+loginCC98.getSavedAccessToken();
+
     }
 
 
@@ -80,7 +96,7 @@ public class CC98APIManager {
 
                 //同步请求方式，获取最新的Token
                 String newSession = getNewToken();
-                //使用新的Token，创建新的请求
+
                 Request newRequest = chain.request()
                         .newBuilder()
                         .header(AUTH_PARA_HEADER, MAGIC1 + newSession)

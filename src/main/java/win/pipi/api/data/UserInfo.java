@@ -2,53 +2,74 @@ package win.pipi.api.data;
 
 public class UserInfo {
 
+
     /**
-     * id : 98
-     * name : CC98
-     * title : My CC98
-     * postCount : 9898
-     * prestige : 98
-     * faction : My Home
-     * groupName : 站务组成员
-     * registerTime : 1998-09-08T00:00:00
-     * lastLogOnTime : 1998-09-08T00:00:00
-     * isOnline : true
-     * portraitUrl : http://www.cc98.org/favicon.ico
-     * portraitHeight : 120
-     * portraitWidth : 120
-     * photoUrl : http://www.cc98.org/favicon.ico
-     * signatureCode : [url=http://www.cc98.org]戳我访问 CC98[/url]
-     * gender : 0
-     * level : 黄金圣斗士
-     * emailAddress : contact@cc98.org
-     * homePageUrl : http://www.cc98.org
-     * birthday : 1998-09-08T00:00:00
-     * qq : 19989898
-     * msn : cc98@msn.com
+     * id : 508726
+     * name : lidaqing
+     * customTitle :
+     * postCount : 41
+     * prestige : 0
+     * privilege : 注册用户
+     * faction :
+     * groupName : baby
+     * registerTime : 2014-09-24T08:56:00
+     * lastLogOnTime : 2018-01-11T09:57:00
+     * isOnline : false
+     * portraitUrl : http://www.cc98.org/static/images/default_avatar_boy.png
+     * signatureCode :
+     * gender : 1
+     * isVerified : true
+     * displayTitle : null
+     * displayTitleId : null
+     * emailAddress :
+     * birthday : null
+     * qq :
+     * wealth : 548
+     * lastIpAddress : null
+     * customBoards : null
+     * fanCount : 0
+     * followCount : 0
+     * isFollowing : false
+     * levelTitle : baby
+     * introduction : null
+     * popularity : 0
+     * deleteCount : 0
+     * lockState : 0
+     * userTitleIds : null
      */
 
     private int id;
     private String name;
-    private String title;
+    private String customTitle;
     private int postCount;
     private int prestige;
+    private String privilege;
     private String faction;
     private String groupName;
     private String registerTime;
     private String lastLogOnTime;
     private boolean isOnline;
     private String portraitUrl;
-    private int portraitHeight;
-    private int portraitWidth;
-    private String photoUrl;
     private String signatureCode;
     private int gender;
-    private String level;
+    private boolean isVerified;
+    private String displayTitle;
+    private String displayTitleId;
     private String emailAddress;
-    private String homePageUrl;
     private String birthday;
     private String qq;
-    private String msn;
+    private int wealth;
+    private Object lastIpAddress;
+    private Object customBoards;
+    private int fanCount;
+    private int followCount;
+    private boolean isFollowing;
+    private String levelTitle;
+    private String introduction;
+    private int popularity;
+    private int deleteCount;
+    private int lockState;
+    private String userTitleIds;
 
     public int getId() {
         return id;
@@ -66,12 +87,12 @@ public class UserInfo {
         this.name = name;
     }
 
-    public String getTitle() {
-        return title;
+    public String getCustomTitle() {
+        return customTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setCustomTitle(String customTitle) {
+        this.customTitle = customTitle;
     }
 
     public int getPostCount() {
@@ -88,6 +109,14 @@ public class UserInfo {
 
     public void setPrestige(int prestige) {
         this.prestige = prestige;
+    }
+
+    public String getPrivilege() {
+        return privilege;
+    }
+
+    public void setPrivilege(String privilege) {
+        this.privilege = privilege;
     }
 
     public String getFaction() {
@@ -138,30 +167,6 @@ public class UserInfo {
         this.portraitUrl = portraitUrl;
     }
 
-    public int getPortraitHeight() {
-        return portraitHeight;
-    }
-
-    public void setPortraitHeight(int portraitHeight) {
-        this.portraitHeight = portraitHeight;
-    }
-
-    public int getPortraitWidth() {
-        return portraitWidth;
-    }
-
-    public void setPortraitWidth(int portraitWidth) {
-        this.portraitWidth = portraitWidth;
-    }
-
-    public String getPhotoUrl() {
-        return photoUrl;
-    }
-
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
-    }
-
     public String getSignatureCode() {
         return signatureCode;
     }
@@ -178,12 +183,28 @@ public class UserInfo {
         this.gender = gender;
     }
 
-    public String getLevel() {
-        return level;
+    public boolean isIsVerified() {
+        return isVerified;
     }
 
-    public void setLevel(String level) {
-        this.level = level;
+    public void setIsVerified(boolean isVerified) {
+        this.isVerified = isVerified;
+    }
+
+    public Object getDisplayTitle() {
+        return displayTitle;
+    }
+
+    public void setDisplayTitle(String displayTitle) {
+        this.displayTitle = displayTitle;
+    }
+
+    public Object getDisplayTitleId() {
+        return displayTitleId;
+    }
+
+    public void setDisplayTitleId(String displayTitleId) {
+        this.displayTitleId = displayTitleId;
     }
 
     public String getEmailAddress() {
@@ -194,15 +215,7 @@ public class UserInfo {
         this.emailAddress = emailAddress;
     }
 
-    public String getHomePageUrl() {
-        return homePageUrl;
-    }
-
-    public void setHomePageUrl(String homePageUrl) {
-        this.homePageUrl = homePageUrl;
-    }
-
-    public String getBirthday() {
+    public Object getBirthday() {
         return birthday;
     }
 
@@ -218,11 +231,99 @@ public class UserInfo {
         this.qq = qq;
     }
 
-    public String getMsn() {
-        return msn;
+    public int getWealth() {
+        return wealth;
     }
 
-    public void setMsn(String msn) {
-        this.msn = msn;
+    public void setWealth(int wealth) {
+        this.wealth = wealth;
+    }
+
+    public Object getLastIpAddress() {
+        return lastIpAddress;
+    }
+
+    public void setLastIpAddress(Object lastIpAddress) {
+        this.lastIpAddress = lastIpAddress;
+    }
+
+    public Object getCustomBoards() {
+        return customBoards;
+    }
+
+    public void setCustomBoards(Object customBoards) {
+        this.customBoards = customBoards;
+    }
+
+    public int getFanCount() {
+        return fanCount;
+    }
+
+    public void setFanCount(int fanCount) {
+        this.fanCount = fanCount;
+    }
+
+    public int getFollowCount() {
+        return followCount;
+    }
+
+    public void setFollowCount(int followCount) {
+        this.followCount = followCount;
+    }
+
+    public boolean isIsFollowing() {
+        return isFollowing;
+    }
+
+    public void setIsFollowing(boolean isFollowing) {
+        this.isFollowing = isFollowing;
+    }
+
+    public String getLevelTitle() {
+        return levelTitle;
+    }
+
+    public void setLevelTitle(String levelTitle) {
+        this.levelTitle = levelTitle;
+    }
+
+    public Object getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public int getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(int popularity) {
+        this.popularity = popularity;
+    }
+
+    public int getDeleteCount() {
+        return deleteCount;
+    }
+
+    public void setDeleteCount(int deleteCount) {
+        this.deleteCount = deleteCount;
+    }
+
+    public int getLockState() {
+        return lockState;
+    }
+
+    public void setLockState(int lockState) {
+        this.lockState = lockState;
+    }
+
+    public Object getUserTitleIds() {
+        return userTitleIds;
+    }
+
+    public void setUserTitleIds(String userTitleIds) {
+        this.userTitleIds = userTitleIds;
     }
 }

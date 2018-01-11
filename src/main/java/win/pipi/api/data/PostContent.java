@@ -1,38 +1,67 @@
 package win.pipi.api.data;
 
+import java.util.List;
+
 public class PostContent {
 
+
     /**
-     * id : 1
-     * title : sample string 2
-     * content : sample string 3
-     * time : 2017-10-15T03:05:57.3313302+08:00
-     * isDeleted : true
-     * topicId : 6
-     * needAudit : true
-     * floor : 8
-     * userName : sample string 9
-     * userId : 1
+     * id : 793968758
+     * parentId : 0
+     * boardId : 182
+     * userName : 0b046c
+     * userId : null
+     * title :
+     * content :
+     * * time : 2018-01-09T16:29:10.317
+     * length : 0
+     * topicId : 4747357
+     * isBest : false
+     * ip : *
+     * state : 0
      * isAnonymous : true
+     * awardInfo : null
+     * floor : 1
+     * allowedViewers : null
+     * isAllowedOnly : false
      * contentType : 0
-     * lastUpdateAuthor : sample string 11
-     * lastUpdateTime : 2017-10-15T03:05:57.3313302+08:00
+     * lastUpdateTime : null
+     * lastUpdateAuthor : null
+     * isDeleted : false
+     * likeCount : 1
+     * dislikeCount : 0
+     * isLZ : true
+     * likeState : 0
+     * awards : []
      */
 
     private int id;
+    private int parentId;
+    private int boardId;
+    private String userName;
+    private int userId;
     private String title;
     private String content;
     private String time;
-    private boolean isDeleted;
+    private int length;
     private int topicId;
-    private boolean needAudit;
-    private int floor;
-    private String userName;
-    private int userId;
+    private boolean isBest;
+    private String ip;
+    private int state;
     private boolean isAnonymous;
+    private Object awardInfo;
+    private int floor;
+    private Object allowedViewers;
+    private boolean isAllowedOnly;
     private int contentType;
-    private String lastUpdateAuthor;
-    private String lastUpdateTime;
+    private Object lastUpdateTime;
+    private Object lastUpdateAuthor;
+    private boolean isDeleted;
+    private int likeCount;
+    private int dislikeCount;
+    private boolean isLZ;
+    private int likeState;
+    private List<?> awards;
 
     public int getId() {
         return id;
@@ -40,6 +69,38 @@ public class PostContent {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(int parentId) {
+        this.parentId = parentId;
+    }
+
+    public int getBoardId() {
+        return boardId;
+    }
+
+    public void setBoardId(int boardId) {
+        this.boardId = boardId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getTitle() {
@@ -66,12 +127,12 @@ public class PostContent {
         this.time = time;
     }
 
-    public boolean isIsDeleted() {
-        return isDeleted;
+    public int getLength() {
+        return length;
     }
 
-    public void setIsDeleted(boolean isDeleted) {
-        this.isDeleted = isDeleted;
+    public void setLength(int length) {
+        this.length = length;
     }
 
     public int getTopicId() {
@@ -82,36 +143,28 @@ public class PostContent {
         this.topicId = topicId;
     }
 
-    public boolean isNeedAudit() {
-        return needAudit;
+    public boolean isIsBest() {
+        return isBest;
     }
 
-    public void setNeedAudit(boolean needAudit) {
-        this.needAudit = needAudit;
+    public void setIsBest(boolean isBest) {
+        this.isBest = isBest;
     }
 
-    public int getFloor() {
-        return floor;
+    public String getIp() {
+        return ip;
     }
 
-    public void setFloor(int floor) {
-        this.floor = floor;
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 
-    public String getUserName() {
-        return userName;
+    public int getState() {
+        return state;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setState(int state) {
+        this.state = state;
     }
 
     public boolean isIsAnonymous() {
@@ -122,6 +175,38 @@ public class PostContent {
         this.isAnonymous = isAnonymous;
     }
 
+    public Object getAwardInfo() {
+        return awardInfo;
+    }
+
+    public void setAwardInfo(Object awardInfo) {
+        this.awardInfo = awardInfo;
+    }
+
+    public int getFloor() {
+        return floor;
+    }
+
+    public void setFloor(int floor) {
+        this.floor = floor;
+    }
+
+    public Object getAllowedViewers() {
+        return allowedViewers;
+    }
+
+    public void setAllowedViewers(Object allowedViewers) {
+        this.allowedViewers = allowedViewers;
+    }
+
+    public boolean isIsAllowedOnly() {
+        return isAllowedOnly;
+    }
+
+    public void setIsAllowedOnly(boolean isAllowedOnly) {
+        this.isAllowedOnly = isAllowedOnly;
+    }
+
     public int getContentType() {
         return contentType;
     }
@@ -130,19 +215,67 @@ public class PostContent {
         this.contentType = contentType;
     }
 
-    public String getLastUpdateAuthor() {
-        return lastUpdateAuthor;
-    }
-
-    public void setLastUpdateAuthor(String lastUpdateAuthor) {
-        this.lastUpdateAuthor = lastUpdateAuthor;
-    }
-
-    public String getLastUpdateTime() {
+    public Object getLastUpdateTime() {
         return lastUpdateTime;
     }
 
-    public void setLastUpdateTime(String lastUpdateTime) {
+    public void setLastUpdateTime(Object lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
+    }
+
+    public Object getLastUpdateAuthor() {
+        return lastUpdateAuthor;
+    }
+
+    public void setLastUpdateAuthor(Object lastUpdateAuthor) {
+        this.lastUpdateAuthor = lastUpdateAuthor;
+    }
+
+    public boolean isIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
+    public int getLikeCount() {
+        return likeCount;
+    }
+
+    public void setLikeCount(int likeCount) {
+        this.likeCount = likeCount;
+    }
+
+    public int getDislikeCount() {
+        return dislikeCount;
+    }
+
+    public void setDislikeCount(int dislikeCount) {
+        this.dislikeCount = dislikeCount;
+    }
+
+    public boolean isIsLZ() {
+        return isLZ;
+    }
+
+    public void setIsLZ(boolean isLZ) {
+        this.isLZ = isLZ;
+    }
+
+    public int getLikeState() {
+        return likeState;
+    }
+
+    public void setLikeState(int likeState) {
+        this.likeState = likeState;
+    }
+
+    public List<?> getAwards() {
+        return awards;
+    }
+
+    public void setAwards(List<?> awards) {
+        this.awards = awards;
     }
 }
