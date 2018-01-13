@@ -2,7 +2,7 @@ package win.pipi.api.data;
 
 public class NewPostInfo {
 
-    public NewPostInfo(String title, String content, PostContentType contentType) {
+    public NewPostInfo(String title, String content, int contentType) {
         this.title = title;
         this.content = content;
         this.contentType = contentType;
@@ -18,7 +18,7 @@ public class NewPostInfo {
 
     private String title;
     private String content;
-    private PostContentType contentType;
+    private int contentType;
 
     public String getTitle() {
         return title;
@@ -36,11 +36,11 @@ public class NewPostInfo {
         this.content = content;
     }
 
-    public PostContentType getContentType() {
+    public int getContentType() {
         return contentType;
     }
 
-    public void setContentType(PostContentType contentType) {
+    public void setContentType(int contentType) {
         this.contentType = contentType;
     }
 

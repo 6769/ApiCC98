@@ -53,17 +53,15 @@ public interface CC98APIInterface {
 
     //create new topic;
     // need OAuth
-    @POST ("Topic/Board/{boardId}")
+    @POST("Board/{boardId}/Topic")
     Observable<String>            postTopicBoard(@Path("boardId") Integer boardId,
                                            @Body NewPostInfo newPostInfo);
 
-
     //append post to an existed topic;
     // need Oauth;
-    @POST ("Post/Topic/{topicId}")
-    Observable<String>            postPostTopic(@Path("topicId")Integer id,
-                                        @Body NewPostInfo newPostInfo
-                                              );
+    @POST("topic/{topicId}/post")
+    Observable<String> postReplyTopic(@Path("topicId") Integer id,
+                                      @Body NewPostInfo newPost);
 
     @GET("User/{id}")
     Observable<UserInfo>              getUserInfoViaId(@Path("id")Integer id);
