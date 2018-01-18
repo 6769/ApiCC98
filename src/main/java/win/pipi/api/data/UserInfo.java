@@ -1,42 +1,11 @@
 package win.pipi.api.data;
 
+import java.util.List;
+
 public class UserInfo {
 
 
-    /**
-     * id : 508726
-     * name : lidaqing
-     * customTitle :
-     * postCount : 41
-     * prestige : 0
-     * privilege : 注册用户
-     * faction :
-     * groupName : baby
-     * registerTime : 2014-09-24T08:56:00
-     * lastLogOnTime : 2018-01-11T09:57:00
-     * isOnline : false
-     * portraitUrl : http://www.cc98.org/static/images/default_avatar_boy.png
-     * signatureCode :
-     * gender : 1
-     * isVerified : true
-     * displayTitle : null
-     * displayTitleId : null
-     * emailAddress :
-     * birthday : null
-     * qq :
-     * wealth : 548
-     * lastIpAddress : null
-     * customBoards : null
-     * fanCount : 0
-     * followCount : 0
-     * isFollowing : false
-     * levelTitle : baby
-     * introduction : null
-     * popularity : 0
-     * deleteCount : 0
-     * lockState : 0
-     * userTitleIds : null
-     */
+
 
     private int id;
     private String name;
@@ -53,14 +22,13 @@ public class UserInfo {
     private String signatureCode;
     private int gender;
     private boolean isVerified;
-    private String displayTitle;
-    private String displayTitleId;
+    private Object displayTitle;
+    private Object displayTitleId;
     private String emailAddress;
     private String birthday;
     private String qq;
     private int wealth;
-    private Object lastIpAddress;
-    private Object customBoards;
+    private String lastIpAddress;
     private int fanCount;
     private int followCount;
     private boolean isFollowing;
@@ -69,7 +37,8 @@ public class UserInfo {
     private int popularity;
     private int deleteCount;
     private int lockState;
-    private String userTitleIds;
+    private List<Integer> customBoards;
+    private List<?> userTitleIds;
 
     public int getId() {
         return id;
@@ -195,7 +164,7 @@ public class UserInfo {
         return displayTitle;
     }
 
-    public void setDisplayTitle(String displayTitle) {
+    public void setDisplayTitle(Object displayTitle) {
         this.displayTitle = displayTitle;
     }
 
@@ -203,7 +172,7 @@ public class UserInfo {
         return displayTitleId;
     }
 
-    public void setDisplayTitleId(String displayTitleId) {
+    public void setDisplayTitleId(Object displayTitleId) {
         this.displayTitleId = displayTitleId;
     }
 
@@ -215,7 +184,7 @@ public class UserInfo {
         this.emailAddress = emailAddress;
     }
 
-    public Object getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
@@ -239,20 +208,12 @@ public class UserInfo {
         this.wealth = wealth;
     }
 
-    public Object getLastIpAddress() {
+    public String getLastIpAddress() {
         return lastIpAddress;
     }
 
-    public void setLastIpAddress(Object lastIpAddress) {
+    public void setLastIpAddress(String lastIpAddress) {
         this.lastIpAddress = lastIpAddress;
-    }
-
-    public Object getCustomBoards() {
-        return customBoards;
-    }
-
-    public void setCustomBoards(Object customBoards) {
-        this.customBoards = customBoards;
     }
 
     public int getFanCount() {
@@ -287,7 +248,7 @@ public class UserInfo {
         this.levelTitle = levelTitle;
     }
 
-    public Object getIntroduction() {
+    public String getIntroduction() {
         return introduction;
     }
 
@@ -319,11 +280,19 @@ public class UserInfo {
         this.lockState = lockState;
     }
 
-    public Object getUserTitleIds() {
+    public List<Integer> getCustomBoards() {
+        return customBoards;
+    }
+
+    public void setCustomBoards(List<Integer> customBoards) {
+        this.customBoards = customBoards;
+    }
+
+    public List<?> getUserTitleIds() {
         return userTitleIds;
     }
 
-    public void setUserTitleIds(String userTitleIds) {
+    public void setUserTitleIds(List<?> userTitleIds) {
         this.userTitleIds = userTitleIds;
     }
 }

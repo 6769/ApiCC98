@@ -35,7 +35,7 @@ public class LoginCC98 {
         this.accessTokenPayload = accessTokenPayload;
     }
 
-    private AccessTokenPayload accessTokenPayload;
+    private AccessTokenPayload accessTokenPayload=new AccessTokenPayload();
     private long lastSuccessLogin = 0;
     private String username;
 
@@ -76,6 +76,12 @@ public class LoginCC98 {
         long currentT = System.currentTimeMillis();
         return (currentT - lastSuccessLogin) / 1000 < 3600;
 
+    }
+
+    public void setSavedToken(String token){
+        if (token!=null && !token.isEmpty()){
+            accessTokenPayload.setAccess_token(token);
+        }
     }
 
     public String getSavedAccessToken() {
