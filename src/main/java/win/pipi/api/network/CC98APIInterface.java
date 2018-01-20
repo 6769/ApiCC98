@@ -1,5 +1,8 @@
 package win.pipi.api.network;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.*;
 import rx.Observable;
@@ -121,6 +124,16 @@ public interface CC98APIInterface {
     @GET("notification/system")
     Observable notifyViaSystem(@Query("from") Integer from,
                                @Query("size") Integer size);
+
+
+    @Multipart
+    @POST("file")
+    Call<List<String>> uploadFileSync(@Part MultipartBody.Part file);
+
+
+    @Multipart
+    @POST("file")
+    Observable<List<String>> uploadFile(@Part MultipartBody.Part file);
 
 
 }

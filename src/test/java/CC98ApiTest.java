@@ -32,8 +32,6 @@ public class CC98ApiTest {
     private static LoginCC98 loginCC98;
 
     static {
-        openIDConnect = OpenIDConnect.openIDConnectRequestBuilder();
-
         loginCC98 = new LoginCC98();
         request = new CC98APIManager(loginCC98).createApiClient();
         type = new TypeToken<Map<String, String>>() {
@@ -146,8 +144,9 @@ public class CC98ApiTest {
 
     }
 
-    public static String getAuthKeys() {
-        String path = "auth.test.keys";
+    public static String getAuthKeys(String path) {
+        if (path==null)
+        path = "auth.test.keys";
         try {
             byte[] encoded = Files.readAllBytes(Paths.get("src", "test", "resources", path));
             String keys = new String(encoded);
