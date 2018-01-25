@@ -56,7 +56,7 @@ public class TopicInfo implements TopicInfoInterface {
     }
 
     public String getTime() {
-        return time;
+        return Utility.getDefaultDateStr(time);
     }
 
     public void setTime(String time) {
