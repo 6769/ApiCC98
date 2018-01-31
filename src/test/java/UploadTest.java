@@ -19,15 +19,21 @@ public class UploadTest {
         return str.split("\\s");
     }
 
-    @Test
-    public void testUploadFile() throws Exception {
-
+    public static CC98APIInterface getLoginedClient(){
         String[] userpass = getUserNamePass();
 
         LoginCC98 loginCC98 = new LoginCC98(userpass[0], userpass[2]);
 
         CC98APIManager manager = new CC98APIManager(loginCC98);
-        CC98APIInterface apiInterface = manager.createApiClient();
+
+        return manager.createApiClient();
+    }
+
+    @Test
+    public void testUploadFile() throws Exception {
+
+
+        CC98APIInterface apiInterface = getLoginedClient();
 
         File file = new File("README.md.jpg");
         RequestBody requestFile =

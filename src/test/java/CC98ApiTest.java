@@ -30,6 +30,7 @@ public class CC98ApiTest {
     private static OpenIDConnect openIDConnect;
     private static Type type;
     private static LoginCC98 loginCC98;
+    static Gson gson=new Gson();
 
     static {
         loginCC98 = new LoginCC98();
@@ -176,7 +177,14 @@ public class CC98ApiTest {
             public void onNext(ArrayList<T> TopicInfos) {
                 System.out.println(TopicInfos.size());
                 for (T i : TopicInfos) {
-                    System.out.println(i.getTitle() + "_" + i.getAuthorName());
+                    //System.out.println(i.getTitle() + "_" + i.getAuthorName());
+                    print(gson.toJson(i));
+                    if(i instanceof TopicInfo){
+                        print(((TopicInfo) i).getTime());
+                    }
+                    if(i instanceof HotTopicInfo){
+                        print(((HotTopicInfo) i).getCreateTime());
+                    }
                 }
 
             }

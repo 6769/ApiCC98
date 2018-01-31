@@ -99,7 +99,7 @@ public class HotTopicInfo implements TopicInfoInterface {
     }
 
     public String getCreateTime() {
-        String parsedTime = Utility.getDefaultDateStr(createTime);
+        String parsedTime = Utility.getDateStupid(createTime);
         return parsedTime;
     }
 

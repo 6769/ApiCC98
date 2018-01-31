@@ -136,4 +136,16 @@ public interface CC98APIInterface {
     Observable<List<String>> uploadFile(@Part MultipartBody.Part file);
 
 
+    @GET("me/signin")
+    Observable<DailySign.Status>  getDailySignInfo();
+
+    @GET("me/signin")
+    Call<DailySign.Status>  getDailySignInfoCall();
+
+    @POST("me/signin")
+    Call<String>  postDailySignInfoCall(@Body DailySign.Post msg);
+
+    @POST("me/signin")
+    Observable<String>  postDailySignInfo(@Body DailySign.Post msg);
+
 }

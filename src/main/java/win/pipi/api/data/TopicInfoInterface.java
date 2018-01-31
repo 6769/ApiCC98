@@ -9,4 +9,5 @@ public interface TopicInfoInterface {
 
     public int getReplyCount();
     public int getHitCount();
+
 }
